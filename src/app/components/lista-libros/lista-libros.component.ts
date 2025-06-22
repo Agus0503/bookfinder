@@ -1,11 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Input} from '@angular/core';
+import { Libro } from '../../models/libro.model';
+import { CommonModule } from '@angular/common';
+import { LibroComponent } from '../libro/libro.component';
+
 
 @Component({
   selector: 'app-lista-libros',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, LibroComponent],
   templateUrl: './lista-libros.component.html',
-  styleUrl: './lista-libros.component.css'
+  styleUrls: ['./lista-libros.component.css']
 })
 export class ListaLibrosComponent {
+  @Input() libros: Libro[] = [];
 
 }
