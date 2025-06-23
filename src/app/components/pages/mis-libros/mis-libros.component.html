@@ -86,7 +86,7 @@
       <li *ngFor="let libro of libros">
         <img [src]="libro.image" width="100" height="150" />
         <h3>{{ libro.title }}</h3>
-        <p>{{ libro.authors?.join(', ') }}</p>
+        <p>{{ libro.authors.join(', ') }}</p>
         <button (click)="editar(libro)">Editar</button>
         <button (click)="eliminar(libro.id)">Eliminar</button>
       </li>
