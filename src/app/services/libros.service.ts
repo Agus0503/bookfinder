@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { LibroComponent } from '../components/libro/libro.component';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +8,7 @@ import { LibroComponent } from '../components/libro/libro.component';
 export class LibrosService {
   private url = 'https://www.googleapis.com/books/v1/volumes';
 
-  constructor(private http: HttpClient) { }
-
-  getAll(): Observable<LibroComponent[]> {
-    return this.http.get<LibroComponent[]>('http://localhost:3000/libros');
-  }
+  constructor(private http: HttpClient) { }  
 
   getLibros(query: string): Observable<any> {
     return this.http.get<any>(`${this.url}?q=${query}`).pipe(
