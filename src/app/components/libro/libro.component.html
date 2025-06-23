@@ -1,0 +1,9 @@
+<div class="libro-card">
+  <img [src]="libro.image || 'https://via.placeholder.com/128x192?text=Sin+imagen'" alt="Portada del libro" />
+
+  <div class="libro-detalles">
+    <h3>{{ libro.title || 'Título desconocido' }}</h3>
+    <p><strong>Autor:</strong> {{ libro.authors.join(', ') || 'Autor desconocido' }}</p>
+    <p>{{ libro.description || 'Sin descripción' }}</p>
+  </div>
+</div>
