@@ -1,46 +1,83 @@
-<h1>Mis libros</h1>
-<a routerLink="">Volver</a>
-<form #form="ngForm" (ngSubmit)="guardarLibro()" class="formulario">
-  <div class="form-group">
-    <input type="text" class="form-control" [(ngModel)]="libroForm.title" name="title" #title="ngModel"
-      placeholder="Título" required [ngClass]="{'is-invalid': title.invalid && title.touched}" />
-    <div class="text-danger" *ngIf="title.invalid && title.touched">
-      Título requerido
+<div class="main-layout-container">
+  <div class="form-section">
+    <div class="formulario-wrapper">
+      <h1>Mis libros</h1>
+      <form #form="ngForm" (ngSubmit)="guardarLibro()" class="formulario">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="libroForm.title"
+            name="title"
+            #title="ngModel"
+            placeholder="Título"
+            required
+            [ngClass]="{ 'is-invalid': title.invalid && title.touched }"
+          />
+          <div class="text-danger" *ngIf="title.invalid && title.touched">
+            Título requerido
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="libroForm.authors[0]"
+            name="author"
+            #author="ngModel"
+            placeholder="Autor"
+            required
+            [ngClass]="{'is-invalid': author.invalid && author.touched}"
+          />
+          <div class="text-danger" *ngIf="author.invalid && author.touched">
+            Autor requerido
+          </div>
+        </div>
+
+        <div class="form-group">
+          <textarea
+            [(ngModel)]="libroForm.description"
+            name="description"
+            placeholder="Descripción"
+            class="form-control"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <input
+            type="text"
+            [(ngModel)]="libroForm.image"
+            name="image"
+            placeholder="URL de imagen"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-buttons">
+          <a routerLink="/" class="button">Volver</a>
+          <button type="submit" class="btn-primary">
+            {{ modoEdicion ? 'Actualizar' : 'Agregar' }}
+          </button>
+          <button type="button" (click)="resetForm(form)" class="btn-secondary">
+            Limpiar Formulario
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 
-  <div class="form-group">
-    <input type="text" class="form-control" [(ngModel)]="libroForm.authors[0]" name="author" #author="ngModel"
-      placeholder="Autor" required [ngClass]="{'is-invalid': author.invalid && author.touched}" />
-    <div class="text-danger" *ngIf="author.invalid && author.touched">
-      Autor requerido
-    </div>
+  <div class="books-section">
+    
+    <h2>Mis libros agregados</h2>
+    <ul>
+      <li *ngFor="let libro of libros">
+        <img [src]="libro.image" width="100" height="150" />
+        <h3>{{ libro.title }}</h3>
+        <p>{{ libro.authors?.join(', ') }}</p>
+        <button (click)="editar(libro)">Editar</button>
+        <button (click)="eliminar(libro.id)">Eliminar</button>
+      </li>
+    </ul>
   </div>
-
-  <div class="form-group">
-    <textarea [(ngModel)]="libroForm.description" name="description" placeholder="Descripción"
-      class="form-control"></textarea>
-  </div>
-
-  <div class="form-group">
-    <input type="text" [(ngModel)]="libroForm.image" name="image" placeholder="URL de imagen" class="form-control" />
-  </div>
-
-  <div class="form-buttons">
-    <button type="submit" class="btn btn-primary">{{ modoEdicion ? 'Actualizar' : 'Agregar' }}</button>
-    <button type="button" (click)="resetForm(form)" class="btn btn-secondary">Limpiar Formulario</button>
-  </div>
-</form>
-
-
-<hr />
-
-<ul>
-  <li *ngFor="let libro of libros">
-    <img [src]="libro.image" width="100" height="150" />
-    <h3>{{ libro.title }}</h3>
-    <p>{{ libro.authors?.join(', ') }}</p>
-    <button (click)="editar(libro)">Editar</button>
-    <button (click)="eliminar(libro.id)">Eliminar</button>
-  </li>
-</ul>
+</div>
