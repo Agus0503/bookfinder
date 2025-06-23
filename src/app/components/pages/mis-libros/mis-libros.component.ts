@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Libro } from '../../models/libro.model'; 
-import { LibrosLocalService } from '../../services/libros-local.service';
+import { Libro } from '../../../models/libro.model'; 
+import { LibrosLocalService } from '../../../services/libros-local.service';
 import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
