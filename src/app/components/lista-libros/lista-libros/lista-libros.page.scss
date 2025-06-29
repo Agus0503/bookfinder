@@ -1,11 +1,9 @@
 :host {
-  display: block;
-  height: 100%;
-}
+  ion-grid {
+    margin: 0;
+  }
 
-.lista-libros {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
+  ion-col {
+    padding: 8px;
+  }
 }

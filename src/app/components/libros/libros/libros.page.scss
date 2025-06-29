@@ -1,76 +1,37 @@
 :host {
-  display: block;
-  padding: 1rem;
-}
-
-.libro-card {
-  display: flex;
-  gap: 1rem;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-
-  &:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  }
-
-  img,
-  .libro-img-placeholder {
-    width: 128px;
-    height: 192px;
-  }
-}
-
-.libro-detalles {
-  flex: 1;
-
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
-  }
-
-  p {
-    margin: 0.2rem 0;
-    line-height: 1.4;
-  }
-}
-
-.libro-info {
-  flex: 1;
-}
-
-h2 {
-  font-size: 1.2rem;
-  margin: 0 0 5px;
-  color: #222;
-}
-
-.descripcion {
-  font-size: 0.95rem;
-  color: #444;
-}
-
-@media (max-width: 600px) {
   .libro-card {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
+    --background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease;
 
-  .libro-img,
-  .libro-img-placeholder {
-    width: 150px;
-    height: auto;
-  }
+    &:hover {
+      transform: translateY(-4px);
+    }
 
-  .libro-info {
-    width: 100%;
-  }
+    ion-img {
+      height: 180px;
+      object-fit: cover;
+      background: #F0F4F8;
+    }
 
-  .descripcion {
-    font-size: 0.9rem;
+    ion-card-header {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      --color: #fff;
+      text-align: center;
+    }
+
+    ion-card-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    ion-card-content {
+      p {
+        margin: 4px 0;
+        color: #333;
+      }
+    }
   }
 }

@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Libro } from 'src/app/models/libros.models';
-
-// Ionic components necesarios
 import {
   IonCard,
   IonCardHeader,
@@ -13,7 +11,7 @@ import {
 @Component({
   selector: 'app-libro',
   standalone: true,
-  imports: [IonContent, IonToolbar, IonTitle, IonHeader, 
+  imports: [
     CommonModule,
     IonCard,
     IonCardHeader,

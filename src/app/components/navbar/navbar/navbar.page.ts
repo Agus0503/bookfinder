@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
+
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -11,7 +13,7 @@ import { IonicModule } from '@ionic/angular';
     RouterModule,
     CommonModule,
     FormsModule,
-    IonicModule
+    IonicModule,
   ],
   templateUrl: './navbar.page.html',
   styleUrls: ['./navbar.page.scss']  // te recomiendo usar scss en Ionic

@@ -4,13 +4,13 @@ import { LibrosService } from 'src/app/services/libros.service';
 import { NavbarComponent } from 'src/app/components/navbar/navbar/navbar.page';
 import { ListaLibrosComponent } from 'src/app/components/lista-libros/lista-libros/lista-libros.page';
 import { CommonModule } from '@angular/common';
-import { IonHeader, IonFooter ,IonToolbar, IonTitle, IonContent } from "@ionic/angular/standalone";
+import { IonHeader, IonFooter ,IonMenuButton,IonToolbar, IonTitle, IonContent, IonIcon, IonButton, IonButtons } from "@ionic/angular/standalone";
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [IonContent, IonFooter , IonTitle, IonToolbar, IonHeader, CommonModule, NavbarComponent, ListaLibrosComponent],
+  imports: [IonButtons, IonButton,IonMenuButton, IonIcon, IonContent, IonFooter , IonTitle, IonToolbar, IonHeader, CommonModule, NavbarComponent, ListaLibrosComponent],
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss']
 })

@@ -6,29 +6,30 @@
 
 <ion-content class="ion-padding">
   <form #form="ngForm" (ngSubmit)="guardarLibro()">
+
     <ion-item>
       <ion-label position="floating">Título</ion-label>
       <ion-input
         [(ngModel)]="libroForm.title"
         name="title"
         required
-        #title="ngModel"
+        #titleModel="ngModel"
       ></ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="title.invalid && title.touched">
+    <ion-text color="danger" *ngIf="titleModel.invalid && titleModel.touched">
       <p class="ion-padding-start">Título requerido</p>
     </ion-text>
 
     <ion-item>
       <ion-label position="floating">Autor</ion-label>
       <ion-input
-        [(ngModel)]="libroForm.authors[0]"
+        [(ngModel)]="author"
         name="author"
         required
-        #author="ngModel"
+        #authorModel="ngModel"
       ></ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="author.invalid && author.touched">
+    <ion-text color="danger" *ngIf="authorModel.invalid && authorModel.touched">
       <p class="ion-padding-start">Autor requerido</p>
     </ion-text>
 
@@ -40,19 +41,27 @@
       ></ion-textarea>
     </ion-item>
 
+    
     <ion-item>
       <ion-label position="floating">URL de imagen</ion-label>
-      <ion-input [(ngModel)]="libroForm.image" name="image"></ion-input>
+      <ion-input
+        [(ngModel)]="libroForm.image"
+        name="image"
+      ></ion-input>
     </ion-item>
 
+  
     <ion-button expand="block" type="submit" color="primary">
       {{ modoEdicion ? 'Actualizar' : 'Agregar' }}
     </ion-button>
-
-    <ion-button expand="block" type="button" color="medium" (click)="resetForm(form)">
+    <ion-button
+      expand="block"
+      type="button"
+      color="medium"
+      (click)="resetForm(form)"
+    >
       Limpiar Formulario
     </ion-button>
-
     <ion-button expand="block" fill="clear" routerLink="/">
       Volver
     </ion-button>
@@ -65,12 +74,18 @@
 
     <ion-item *ngFor="let libro of libros">
       <ion-thumbnail slot="start">
-        <img [src]="libro.image" />
+        <img [src]="libro.image || 'assets/placeholder.png'" />
       </ion-thumbnail>
 
-      <ion-label>
+      <ion-label class="ion-text-wrap">
         <h2>{{ libro.title }}</h2>
         <p>{{ libro.authors.join(', ') }}</p>
+        <p *ngIf="libro.description; else noDesc">
+          {{ libro.description }}
+        </p>
+        <ng-template #noDesc>
+          <p class="ion-color-medium">Sin descripción</p>
+        </ng-template>
       </ion-label>
 
       <ion-buttons slot="end">

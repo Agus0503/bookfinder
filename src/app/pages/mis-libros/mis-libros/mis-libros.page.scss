@@ -1,25 +1,68 @@
-.error-text {
-  margin-left: 16px;
-  font-size: 0.8rem;
-}
+:host {
+  /* 1) Fondo general del content */
+  ion-content {
+    --background: #E0F7FA;  /* celeste suave */
+  }
 
-.form-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-  padding-bottom: 1rem;
-}
+  /* 2) Estilo del header con gradiente */
+  ion-header,
+  ion-toolbar.gradient-toolbar {
+    --background: linear-gradient(135deg, #6a11cb, #2575fc);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
 
-ion-footer.form-buttons {
-  border-top: none;
-  padding: 0;
-  margin-top: 1rem;
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-}
+  /* 3) Contenedor del formulario */
+  .form-container {
+    display: grid;
+    gap: 1rem;
+    background: #B3E5FC;        /* celeste marcado */
+    border: 2px solid #81D4FA;  /* borde celeste oscuro */
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
 
-ion-list ion-item img {
-  border-radius: 4px;
-  object-fit: cover;
+  /* 4) Lista de libros */
+  .books-list {
+    background: #E1F5FE; /* azul claro */
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: grid;
+    gap: 0.75rem;
+
+    /* que las tarjetas se ajusten en filas */
+    @media (min-width: 600px) {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  }
+
+  /* 5) Botones estilo lila → activación violeta */
+  ion-button {
+    --background: #C8A2C8;       /* lila */
+    --color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.1s, --background 0.2s;
+    margin: 0.5rem 0;
+
+    &:hover,
+    &:active {
+      --background: #7B68EE;    /* azul-morado claro */
+      transform: translateY(-1px);
+    }
+  }
+
+  /* 6) Responsive: full width para botones en móvil */
+  @media (max-width: 480px) {
+    .form-container,
+    .books-list {
+      padding: 0.8rem;
+    }
+
+    ion-button {
+      width: 100%;
+    }
+  }
 }

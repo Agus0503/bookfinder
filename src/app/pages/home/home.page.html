@@ -1,17 +1,26 @@
+<ion-header>
+  <ion-toolbar class="gradient-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>BookFinder</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" color="light">
+        <ion-icon slot="icon-only" name="book-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>BookFinder</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-content fullscreen="true" class="ion-padding">
-    <app-navbar (searchEvent)="onSearch($event)"></app-navbar>
+<ion-content class="home-content">
+  <app-navbar class="home-navbar" (searchEvent)="onSearch($event)"></app-navbar>
+  <div class="list-container">
     <app-lista-libros [libros]="libros"></app-lista-libros>
-  </ion-content>
+  </div>
+</ion-content>
 
-  <ion-footer>
-    <ion-toolbar>
-      <p class="footer-text">© 2025 - Tu Biblioteca Virtual</p>
-    </ion-toolbar>
-  </ion-footer>
+<ion-footer>
+  <ion-toolbar class="footer-toolbar">
+    <p class="footer-text">© IFTS 2025 – Tu Biblioteca Virtual</p>
+  </ion-toolbar>
+</ion-footer>
