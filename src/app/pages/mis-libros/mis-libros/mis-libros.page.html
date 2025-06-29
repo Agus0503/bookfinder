@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mis Libros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form #form="ngForm" (ngSubmit)="guardarLibro()">
+    <ion-item>
+      <ion-label position="floating">Título</ion-label>
+      <ion-input
+        [(ngModel)]="libroForm.title"
+        name="title"
+        required
+        #title="ngModel"
+      ></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="title.invalid && title.touched">
+      <p class="ion-padding-start">Título requerido</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Autor</ion-label>
+      <ion-input
+        [(ngModel)]="libroForm.authors[0]"
+        name="author"
+        required
+        #author="ngModel"
+      ></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="author.invalid && author.touched">
+      <p class="ion-padding-start">Autor requerido</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea
+        [(ngModel)]="libroForm.description"
+        name="description"
+      ></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">URL de imagen</ion-label>
+      <ion-input [(ngModel)]="libroForm.image" name="image"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" color="primary">
+      {{ modoEdicion ? 'Actualizar' : 'Agregar' }}
+    </ion-button>
+
+    <ion-button expand="block" type="button" color="medium" (click)="resetForm(form)">
+      Limpiar Formulario
+    </ion-button>
+
+    <ion-button expand="block" fill="clear" routerLink="/">
+      Volver
+    </ion-button>
+  </form>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Mis libros agregados</ion-label>
+    </ion-list-header>
+
+    <ion-item *ngFor="let libro of libros">
+      <ion-thumbnail slot="start">
+        <img [src]="libro.image" />
+      </ion-thumbnail>
+
+      <ion-label>
+        <h2>{{ libro.title }}</h2>
+        <p>{{ libro.authors.join(', ') }}</p>
+      </ion-label>
+
+      <ion-buttons slot="end">
+        <ion-button fill="clear" color="primary" (click)="editar(libro)">
+          Editar
+        </ion-button>
+        <ion-button fill="clear" color="danger" (click)="eliminar(libro.id)">
+          Eliminar
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+</ion-content>

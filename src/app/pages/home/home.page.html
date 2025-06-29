@@ -1,0 +1,17 @@
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>BookFinder</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content fullscreen="true" class="ion-padding">
+    <app-navbar (searchEvent)="onSearch($event)"></app-navbar>
+    <app-lista-libros [libros]="libros"></app-lista-libros>
+  </ion-content>
+
+  <ion-footer>
+    <ion-toolbar>
+      <p class="footer-text">© 2025 - Tu Biblioteca Virtual</p>
+    </ion-toolbar>
+  </ion-footer>

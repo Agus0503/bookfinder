@@ -1,0 +1,25 @@
+.error-text {
+  margin-left: 16px;
+  font-size: 0.8rem;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+ion-footer.form-buttons {
+  border-top: none;
+  padding: 0;
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+ion-list ion-item img {
+  border-radius: 4px;
+  object-fit: cover;
+}

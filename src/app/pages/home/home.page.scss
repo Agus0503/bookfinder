@@ -1,0 +1,59 @@
+ion-content {
+  --max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Título */
+ion-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #000000;
+  font-family: Arial, sans-serif;
+  width: 100%;
+  max-width: var(--max-width);
+  text-align: left;
+}
+
+app-navbar,
+app-lista-libros {
+  width: 100%;
+  max-width: var(--max-width);
+}
+
+ion-searchbar {
+  --padding-start: 6px;
+  --padding-end: 6px;
+  --border-radius: 4px;
+  --background: #fff;
+  margin-bottom: 10px;
+}
+
+ion-button {
+  --background: #3f51b5;
+  --color: white;
+}
+
+ion-button:hover {
+  --background: #303f9f;
+}
+
+/* Footer */
+ion-footer ion-toolbar {
+  padding: 20px 10px;
+  color: #0c0c0c;
+  font-size: 0.9rem;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  ion-footer ion-toolbar {
+    font-size: 0.8rem;
+    padding: 15px 5px;
+  }
+}

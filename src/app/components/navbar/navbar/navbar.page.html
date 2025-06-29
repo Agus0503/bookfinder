@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-searchbar
+      [(ngModel)]="query"
+      (ionClear)="buscar()"
+      (ionCancel)="buscar()"
+      (ionInput)="buscar()"
+      placeholder="Buscar libro...">
+    </ion-searchbar>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/mis-libros" routerLinkActive="active">
+        Mis Libros
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

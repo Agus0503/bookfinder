@@ -1,0 +1,17 @@
+<ion-card class="libro-card">
+  <ion-img
+    [src]="libro.image || 'https://via.placeholder.com/128x192?text=Sin+imagen'"
+    alt="Portada del libro">
+  </ion-img>
+
+  <ion-card-header>
+    <ion-card-title>
+      {{ libro.title || 'Título desconocido' }}
+    </ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <p><strong>Autor:</strong> {{ libro.authors?.join(', ') || 'Autor desconocido' }}</p>
+    <p>{{ libro.description || 'Sin descripción' }}</p>
+  </ion-card-content>
+</ion-card>
