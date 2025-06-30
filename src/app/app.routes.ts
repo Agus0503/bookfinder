@@ -26,4 +26,9 @@ export const routes: Routes = [
     path: 'libros',
     loadComponent: () => import('./components/libros/libros/libros.page').then( m => m.LibroComponent)
   },
+  {
+    path: 'mapa-librerias',
+    loadComponent: () => import('./pages/mapa-librerias/mapa-librerias.page').then( m => m.MapaLibreriasPage)
+  },
+
 ];
