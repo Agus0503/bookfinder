@@ -3,6 +3,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { IonSearchbar } from '@ionic/angular/standalone';
 
 
 
@@ -13,7 +14,7 @@ import { IonicModule } from '@ionic/angular';
     RouterModule,
     CommonModule,
     FormsModule,
-    IonicModule,
+    IonicModule, IonSearchbar
   ],
   templateUrl: './navbar.page.html',
   styleUrls: ['./navbar.page.scss']  // te recomiendo usar scss en Ionic

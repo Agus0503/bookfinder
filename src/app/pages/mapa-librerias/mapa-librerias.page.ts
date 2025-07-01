@@ -1,7 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonFab, IonFabButton, IonIcon, IonButton } from '@ionic/angular/standalone';
+import { IonContent, IonFab, IonFabButton, IonIcon } from '@ionic/angular/standalone';
 import * as L from 'leaflet';
 import { Geolocation } from '@capacitor/geolocation';
 import { HttpClient } from '@angular/common/http';
@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './mapa-librerias.page.html',
   styleUrls: ['./mapa-librerias.page.scss'],
   standalone: true,
-  imports: [IonButton, IonIcon, IonFabButton, IonFab, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule,RouterLink]
+  imports: [ IonIcon, IonFabButton, IonFab, IonContent, CommonModule, FormsModule,RouterLink]
 })
 export class MapaLibreriasPage implements AfterViewInit {
   private map!: L.Map;
@@ -44,22 +44,25 @@ export class MapaLibreriasPage implements AfterViewInit {
 
     // Enviar la consulta
     this.http.post(overpassUrl, query, {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-    }).subscribe((data: any) => {
-      if (data.elements && data.elements.length > 0) {
-        data.elements.forEach((element: any) => {
-          if (element.lat && element.lon) {
-            const nombre = element.tags?.name || 'Librería';
-            L.marker([element.lat, element.lon])
-              .addTo(this.map)
-              .bindPopup(nombre);
-          }
-        });
-      } else {
-        console.log('No se encontraron librerías cercanas.');
-      }
-    }, error => {
-      console.error('Error buscando librerías:', error);
-    });
+  headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+}).subscribe({
+  next: (data: any) => {
+    if (data.elements && data.elements.length > 0) {
+      data.elements.forEach((element: any) => {
+        if (element.lat && element.lon) {
+          const nombre = element.tags?.name || 'Librería';
+          L.marker([element.lat, element.lon])
+            .addTo(this.map)
+            .bindPopup(nombre);
+        }
+      });
+    } else {
+      console.log('No se encontraron librerías cercanas.');
+    }
+  },
+  error: (error) => {
+    console.error('Error buscando librerías:', error);
+  }
+});
   }
 }

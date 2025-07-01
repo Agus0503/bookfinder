@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
+import { Libro } from '../models/libros.models';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class LibrosService {
 
   constructor(private http: HttpClient) { }  
 
-  getLibros(query: string): Observable<any> {
+  getLibros(query: string): Observable<Libro[]> {
     return this.http.get<any>(`${this.url}?q=${query}`).pipe(
       map(response =>
         response.items.map((item: any) => ({
