@@ -14,39 +14,51 @@ import { HttpClient } from '@angular/common/http';
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class MapaLibreriasPage implements AfterViewInit {
-  private map: any;
+  private map!: L.Map;
 
   constructor(private http: HttpClient) {}
 
   async ngAfterViewInit() {
-  
-//obtenemos la ubicación del usuario
-      const position = await Geolocation.getCurrentPosition();
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-// centramos el mapa en la ubicación del usuario
-      this.map = L.map('map').setView([lat, lon], 15);
+    const position = await Geolocation.getCurrentPosition();
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-      }).addTo(this.map);
-//marcamos al usuario en el mapa
-      L.marker([lat, lon]).addTo(this.map)
-        .bindPopup('Usted está aquí')
-        .openPopup();
-//se buscan las librerías cercanas con la api del gobierno argentino
-      const url = `https://apis.datos.gob.ar/georef/api/puntos?nombre=libreria&lat=${lat}&lon=${lon}&radio=2000&max=10`;
+    // Mostrar mapa centrado en la ubicación del usuario
+    this.map = L.map('map').setView([lat, lon], 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', ).addTo(this.map);
 
-      this.http.get<any>(url).subscribe(response => {
-        if (response.puntos) {
-          response.puntos.forEach((punto: any) => {
-            if (punto.lat && punto.lon) {
-              L.marker([punto.lat, punto.lon])
-                .addTo(this.map)
-                .bindPopup(punto.nombre || 'Librería');
-            }
-          });
-        }
-      });
-    }
-  } 
+ //marcador
+    L.marker([lat, lon])
+      .addTo(this.map)
+      .bindPopup('Usted está aquí')
+      .openPopup();
+
+    // api de overpass
+    const overpassUrl = 'https://overpass-api.de/api/interpreter';
+    const query = `
+      [out:json];
+      node["shop"="books"](around:4000, ${lat}, ${lon});
+      out body;
+    `; // esta seteado para que aparezcan librerías dentro de un radio de 4000 metros de mi ubicación
+
+    // Enviar la consulta
+    this.http.post(overpassUrl, query, {
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    }).subscribe((data: any) => {
+      if (data.elements && data.elements.length > 0) {
+        data.elements.forEach((element: any) => {
+          if (element.lat && element.lon) {
+            const nombre = element.tags?.name || 'Librería';
+            L.marker([element.lat, element.lon])
+              .addTo(this.map)
+              .bindPopup(nombre);
+          }
+        });
+      } else {
+        console.log('No se encontraron librerías cercanas.');
+      }
+    }, error => {
+      console.error('Error buscando librerías:', error);
+    });
+  }
+}
