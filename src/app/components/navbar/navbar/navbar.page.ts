@@ -2,19 +2,18 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
-import { IonSearchbar } from '@ionic/angular/standalone';
+import { IonSearchbar, IonButton, IonButtons, IonHeader, IonToolbar } from '@ionic/angular/standalone';
 
 
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [
+  imports: [IonToolbar, IonHeader, IonButtons, IonButton, 
     RouterModule,
     CommonModule,
     FormsModule,
-    IonicModule, IonSearchbar
+    IonSearchbar
   ],
   templateUrl: './navbar.page.html',
   styleUrls: ['./navbar.page.scss']  // te recomiendo usar scss en Ionic

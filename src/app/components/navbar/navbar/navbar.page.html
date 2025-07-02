@@ -1,27 +1,17 @@
 <ion-header>
   <ion-toolbar class="gradient-toolbar">
-
     <ion-searchbar
       class="navbar-search"
-      dir="ltr"
       [(ngModel)]="query"
       (ionInput)="buscar()"
       placeholder="Buscar libro..."
       animated="true"
-      showCancelButton="focus"
-    ></ion-searchbar>
+      showCancelButton="focus">
+    </ion-searchbar>
 
     <ion-buttons slot="end">
-    <!-- Botón BUSCAR -->
-    <ion-button fill="solid" color="primary" (click)="buscar()">
-      Buscar
-    </ion-button>
-
-    <!-- Botón MIS LIBROS igual que BUSCAR -->
-    <ion-button fill="solid" color="primary" routerLink="/mis-libros">
-      Mis Libros
-    </ion-button>
-  </ion-buttons>
-
+      <ion-button (click)="buscar()">Buscar</ion-button>
+      <ion-button routerLink="/mis-libros">Mis Libros</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
